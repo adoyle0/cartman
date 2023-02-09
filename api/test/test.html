@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chat</title>
+    <style>
+        input,
+        textarea {
+            border: 1px solid;
+            border-radius: 4px;
+        }
+
+        #history,
+        #message {
+            width: 600px;
+        }
+
+        textarea {
+            height: 20rem;
+        }
+
+        input[type=text] {
+            font-size: 18;
+        }
+
+        input[type=submit],
+        input[type=reset] {
+            font-size: 16;
+            padding: .5em;
+        }
+
+        input[type=submit]:hover {
+            background-color: var(--color10);
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        function onSubmit(message, history) {
+            let options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type':
+                        'application/json;charset=utf-8'
+                },
+                body: JSON.stringify({
+                    'bot_name': 'cartman',
+                    'message': message.value,
+                    'max_new_tokens': max_new_tokens.value,
+                    'num_beams': num_beams.value,
+                    'num_beam_groups': num_beam_groups.value,
+                    'no_repeat_ngram_size': no_repeat_ngram_size.value,
+                    'length_penalty': length_penalty.value,
+                    'diversity_penalty': diversity_penalty.value,
+                    'repetition_penalty': repetition_penalty.value,
+                    'early_stopping': true
+                })
+            }
+
+            history.value = history.value + 'You: ' + message.value + '\n';
+            message.value = "";
+            history.scrollTop = history.scrollHeight
+
+            let fetchRes = fetch('http://localhost:8000/chat', options);
+            fetchRes.then(res =>
+                res.json()).then(d => {
+                    history.value = `${history.value}${d.name}: ${d.message}\n`;
+                    history.scrollTop = history.scrollHeight
+                })
+        };
+    </script>
+    <div>
+        <form id="chatbox" onsubmit="onSubmit(message, history);return false">
+            <textarea id="history" readonly="true" wrap="soft"></textarea>
+            <p>
+                <input type="text" id="message" autocomplete="off">
+            </p>
+            <input type="submit" value="Send">
+            <br />
+            <h3>Knobs to spin:</h3>
+            <table>
+                <tr>
+                    <td><label for="max_new_tokens">Max new tokens:</label></td>
+                    <td><input id="max_new_tokens" type="number" value="200"></td>
+                </tr>
+                <tr>
+                    <td><label for="num_beams">Num beams:</label>
+                    <td><input id="num_beams" type="number" value="8"> (must be divisible by num_beam_groups)
+                </tr>
+                <tr>
+                    <td><label for="num_beam_groups">Num beam groups:</label>
+                    <td><input id="num_beam_groups" type="number" value="4">
+                </tr>
+                <tr>
+                    <td><label for="no_repeat_ngram_size">No repeat ngram size:</label>
+                    <td><input id="no_repeat_ngram_size" type="number" value="3">
+                </tr>
+                <tr>
+                    <td><label for="length_penalty">Length penalty:</label>
+                    <td><input id="length_penalty" type="number" step="0.1" value="1.4">
+                </tr>
+                <tr>
+                    <td><label for="diversity_penalty">Diversity penalty:</label>
+                    <td><input id="diversity_penalty" type="number" step="0.1" value="0">
+                </tr>
+                <tr>
+                    <td><label for="repetition_penalty">Repetition penalty</label>
+                    <td><input id="repetition_penalty" type="number" step="0.1" value="2.1">
+                </tr>
+            </table>
+            <input type="reset">
+        </form>
+    </div>
+</body>
+
+</html>

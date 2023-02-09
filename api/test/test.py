@@ -1,5 +1,4 @@
 import requests
-import json
 
 while True:
     user_input: str = input('>> ')
@@ -19,6 +18,8 @@ while True:
         }
 
     response = requests.post(
-            'http://127.0.0.1:8000/chat/', json=packet)
+        'http://127.0.0.1:8000/chat/',
+        json=packet,
+    ).json()
 
-    print(response.json())
+    print(f"{response.get('name')}: {response.get('message')}")

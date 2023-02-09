@@ -1,3 +1,3 @@
 #!/bin/bash
 
-uvicorn main:api --host 10.0.1.1 --reload
+uvicorn cartman:api --host 10.0.1.1 --reload
