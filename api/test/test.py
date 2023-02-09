@@ -6,6 +6,7 @@ while True:
         break
     else:
         packet = {
+            'bot_name': 'cartman',
             'message': user_input,
             'max_new_tokens': 20,
             'num_beams': 2,
