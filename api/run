@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker run -p 6969:8000 chatbots_api
+docker run -d -p 6969:8000 chatbots_api
