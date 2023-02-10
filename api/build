@@ -1,0 +1,4 @@
+#!/bin/bash
+
+docker build -t chatbots_api .
+docker save chatbots_api | pigz > chatbots_api.tar.gz
