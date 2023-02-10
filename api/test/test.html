@@ -62,7 +62,7 @@
             message.value = "";
             history.scrollTop = history.scrollHeight
 
-            let fetchRes = fetch('http://localhost:8000/chat', options);
+            let fetchRes = fetch('http://localhost:6969/chat', options);
             fetchRes.then(res =>
                 res.json()).then(d => {
                     history.value = `${history.value}${d.name}: ${d.message}\n`;
