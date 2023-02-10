@@ -5,4 +5,5 @@ Cleaning some data and using it to train a chatbot using
 and 17 seasons worth of [South Park](https://southparkstudios.com) dialogue 
 using a Cartman example.
 
-Speedrun script included if you don't want to use the notebook.
+Speedrun script included if you don't want to use the notebook and also 
+scripts to test different styles of generating a response.
