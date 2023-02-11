@@ -1,3 +1,5 @@
 #!/bin/bash
 
-docker build -t chatbots_api .
+docker buildx build --platform=linux/amd64 --tag chatbots_api --load .
+docker save chatbots_api | pigz > chatbots_api.tar.gz
+

@@ -1,0 +1,13 @@
+bin
+build
+Dockerfile-alpine
+lib
+__pycache__
+*/__pycache__
+*/*/__pycache__
+*/*/*/__pycache__
+pyvenv.cfg
+readme.md
+run
+test
+chatbots_api.tar.gz
