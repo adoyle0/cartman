@@ -1,18 +1,28 @@
 import pandas as pd
-df = pd.read_csv('./data/All-seasons.csv')
-cleanlines = pd.Series(
-    [cell
+
+INPUT_FILE_PATH = './data/All-seasons.csv'
+OUPUT_FILE_PATH = './data/train_data.csv'
+
+
+df = pd.read_csv(INPUT_FILE_PATH)
+
+clean_lines = pd.Series(
+    [filter_lines
         .replace('\n', '')
         .replace('(', '')
         .replace(')', '')
         .replace('  ', ' ')
         .strip()
-        for cell in df.Line
+        for filter_lines in df.Line
      ]
 )
 
-train = pd.DataFrame(df.Character)
-train['line'] = cleanlines
-train.columns = ['name', 'line']
+train_data = pd.DataFrame(df.Character)
+del df
 
-train.to_csv('./data/train.csv', index=False)
+train_data['line'] = clean_lines
+
+train_data.columns = ['name', 'line']
+
+
+train_data.to_csv(OUPUT_FILE_PATH, index=False)
