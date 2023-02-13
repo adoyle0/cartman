@@ -1,5 +1,11 @@
 #!/bin/bash
 
+FILE_PATH="../chatbots_api_$(uname -m).tar.gz"
+
+if [ -f $FILE_PATH ]; then
+    rm $FILE_PATH
+fi
+
 docker build --tag chatbots_api .
-docker save chatbots_api | pigz > chatbots_api_$(uname -m).tar.gz
+docker save chatbots_api | pigz > $FILE_PATH
 

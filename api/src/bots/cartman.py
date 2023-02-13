@@ -7,7 +7,7 @@ tokenizer = AutoTokenizer.from_pretrained(
     "microsoft/DialoGPT-large", padding_side='left'
 )
 model = AutoModelForCausalLM.from_pretrained(
-    "src/bots/cartman"
+    "src/bots/cartman_med_3ep"
 )
 
 
