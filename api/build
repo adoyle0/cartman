@@ -6,6 +6,6 @@ if [ -f $FILE_PATH ]; then
     rm $FILE_PATH
 fi
 
+#python -m nuitka --include-module=src --follow-imports --enable-plugin=torch main.py
 docker build --tag chatbots_api .
 docker save chatbots_api | pigz > $FILE_PATH
-

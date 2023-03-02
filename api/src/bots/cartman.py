@@ -4,7 +4,7 @@ from transformers.models.auto.tokenization_auto import AutoTokenizer
 from transformers.models.auto.modeling_auto import AutoModelForCausalLM
 
 tokenizer = AutoTokenizer.from_pretrained(
-    "microsoft/DialoGPT-large", padding_side='left'
+    "microsoft/DialoGPT-medium"
 )
 model = AutoModelForCausalLM.from_pretrained(
     "src/bots/cartman_med_3ep"

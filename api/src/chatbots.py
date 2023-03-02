@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from src.models import Packet, BotResponse
-from src.bots.cartman import cartman
+from .models import Packet, BotResponse
+from .bots.cartman import cartman
 
 
 api = FastAPI()
